@@ -1,0 +1,18 @@
+DECLARE
+  total_marks NUMBER := 0;
+  num_students NUMBER := 0;
+  avg_mark NUMBER;
+  
+  CURSOR student_cur IS
+    SELECT Rollno, name, age, mark1, mark2, mark3, total
+    FROM Student;
+BEGIN
+  FOR student_rec IN student_cur LOOP
+    total_marks := total_marks + student_rec.total;
+    num_students := num_students + 1;
+  END LOOP;
+  
+  avg_mark := total_marks / num_students;
+  
+  DBMS_OUTPUT.PUT_LINE('The average mark of all students is: ' || avg_mark);
+END;
