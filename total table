@@ -1,0 +1,23 @@
+drop table Student;
+create table student(rollno number,name varchar(30),subid number,mark1 number,mark2 number,mark3 number);
+insert into student values(1,'Neeti',11,45,40,43);
+insert into student values(2,'Shrey',13,45,36,44);
+insert into student values(3,'priya',15,43,42,41);
+insert into student values(4,'fudu',12,34,44,33);
+insert into student values(5,'lolaa',14,50,30,36);
+select * from student;
+declare
+p_roll_number number;
+p_total number;
+PROCEDURE get_total_marks(p_roll_number IN number, p_total OUT number) AS
+BEGIN
+    SELECT mark1 + mark2 + mark3
+    INTO p_total
+    FROM student
+    WHERE rollno = p_roll_number;
+END;
+begin
+p_roll_number:=1;
+get_total_marks(p_roll_number,p_total);
+dbms_output.put_line('Total is '||p_total);
+end;
