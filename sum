@@ -1,0 +1,22 @@
+declare
+n1 number;
+n2 number;
+x number;
+i number;
+function suming(n1 in number, n2 in number)return number
+is
+sums number:=0;
+begin 
+for i in n1..n2
+    loop
+    sums:= sums+ (i*(i+1))/2;
+end loop;
+return sums;
+end;
+begin
+
+n1:=2;
+n2:=4;
+x:= suming(n1,n2);
+dbms_output.put_line('sum is'||x);
+end;
